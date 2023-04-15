@@ -1,23 +1,13 @@
 <script lang="ts">
-  import { currentUser, pb} from "$lib/pocketbase"
-  import { onMount } from "svelte";
-
-  async function getCarCollection() {
-    const carCollection = await pb.collection("cars").getList()
-    const cars = carCollection.items
-    return cars
-  }
-
- 
-
+export let data
 </script>
 
 <main />
-  {#await getCarCollection()}
+  {#await data}
     <p>loading...</p>
-  {:then cars}
-    {#each cars as car}
-      <button>{car.carName}</button>
+  {:then data}
+    {#each data.cars as car}
+      <button><a href="/CarOverview/{car.carName}">{car.carName}</a></button>
     {/each}
   {/await}
 <style>
