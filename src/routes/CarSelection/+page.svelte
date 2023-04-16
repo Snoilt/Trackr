@@ -31,11 +31,11 @@
   {#each $cars as car}
     {#if editMode}
       <div>
-        <a href="/CarOverview/{car.carName}">{car.carName}</a>
+        <a href="/CarOverview/{car.id}">{car.carName}</a>
         <button on:click={() => removeCar(car)}>-</button>
       </div>
     {:else}
-      <div><a href="/CarOverview/{car.carName}">{car.carName}</a></div>
+      <div><a href="/CarOverview/{car.id}">{car.carName}</a></div>
     {/if}
   {/each}
   <div>
