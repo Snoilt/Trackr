@@ -6,7 +6,6 @@
 
   export let data
   let cars = data.cars
-  console.log(cars)
   let carInput: HTMLInputElement
 
   async function addCar() {
@@ -15,23 +14,21 @@
       carName: carInput.value,
       user: data.user,
     }
-    carCollection.create(carAddData)
+    await carCollection.create(carAddData)
     invalidateAll()
-    //I do hate this but for now i am jsut so confused 
-    window.location.reload()
   }
+  $: cars = data.cars
 </script>
 
-<main />
-
-{#each cars as car}
-  <button><a href="/CarOverview/{car.carName}">{car.carName}</a></button>
-{/each}
-
-<div>
-  <input type="text" placeholder="Car Name" bind:this={carInput} />
-  <button on:click={addCar}>Add Car</button>
-</div>
+<main>
+  {#each $cars as car}
+    <button><a href="/CarOverview/{car.carName}">{car.carName}</a></button>
+  {/each}
+  <div>
+    <input type="text" placeholder="Car Name" bind:this={carInput} />
+    <button on:click={addCar}>Add Car</button>
+  </div>
+</main>
 
 <style>
 </style>
