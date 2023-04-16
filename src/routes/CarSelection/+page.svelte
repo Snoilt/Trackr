@@ -1,13 +1,12 @@
 <script lang="ts">
   import { invalidate, invalidateAll } from "$app/navigation"
-  import { goto } from "$app/navigation"
-  import { currentUser, pb } from "$lib/pocketbase"
   import type { Record } from "pocketbase"
-  import { load } from "../CarOverview/[slug]/+page.js"
 
   export let data
   let cars = data.cars
   let carInput: HTMLInputElement
+  let editMode = false
+
   const carCollection = data.carCollection
 
   async function addCar() {
@@ -20,15 +19,10 @@
     invalidateAll()
   }
 
-  
-  let editMode = false
-
   async function removeCar(car: Record) {
     await carCollection.delete(car.id)
     invalidateAll()
   }
-
-
 
   $: cars = data.cars
 </script>
@@ -38,7 +32,7 @@
     {#if editMode}
       <div>
         <a href="/CarOverview/{car.carName}">{car.carName}</a>
-        <button on:click={()=> removeCar(car)}>-</button>
+        <button on:click={() => removeCar(car)}>-</button>
       </div>
     {:else}
       <div><a href="/CarOverview/{car.carName}">{car.carName}</a></div>
