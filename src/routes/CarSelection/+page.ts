@@ -13,6 +13,6 @@ export const load = async () => {
     }
   } catch (e) {
     console.log(e)
-    return error(69)
+    return error(450)
   }
 }
