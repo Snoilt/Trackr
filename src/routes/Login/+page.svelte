@@ -94,4 +94,7 @@
     width: 100px;
     height: 50px;
   }
+  h1 {
+    font-size: 45px;
+  }
 </style>

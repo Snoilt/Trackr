@@ -30,12 +30,12 @@
 <main>
   {#each $cars as car}
     {#if editMode}
-      <div>
-        <a href="/CarOverview/{car.id}">{car.carName}</a>
+      <div id="carContainer">
+        <a id="carLink" href="/CarOverview/{car.id}">{car.carName}</a>
         <button on:click={() => removeCar(car)}>-</button>
       </div>
     {:else}
-      <div><a href="/CarOverview/{car.id}">{car.carName}</a></div>
+      <div id="carContainer"><a id="carLink" href="/CarOverview/{car.id}">{car.carName}</a></div>
     {/if}
   {/each}
   <div>
@@ -51,5 +51,24 @@
   >
 </main>
 
-<style>
+<style lang="scss">
+  main {
+    font-family: "Avenir Next Condensed";
+    font-style: italic;
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: 0.025em;
+  }
+    #carContainer {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 10px;
+    }
+
+    #carLink {
+        text-decoration: none;
+        color: black;
+    }
+
 </style>
