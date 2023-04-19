@@ -78,7 +78,7 @@
     border-radius: 5px;
   }
   ::placeholder,
-  .buttonStuff, .inputForms {
+  .buttonStuff, .inputForms, h1 {
     font-family: $basicFont;
     font-style: italic;
     font-weight: 900;
