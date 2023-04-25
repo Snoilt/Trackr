@@ -39,9 +39,9 @@
 </script>
 
 <body data-theme="skeleton" class="bg-no-repeat h-screen w-screen place-items-center grid">
-  <div class="card p-4 w-2/3 h-96 grid place-items-center" id="stuffContainer">
+  <div class="card p-4 w-72 h-96 grid place-items-center" id="stuffContainer">
     <h1 class="text-center text-2xl">Trackr</h1>
-    <p id="belowHeader">Your Personal Car Service Assistant</p>
+    <p class="italic">Personal Car Service Assistant</p>
     <main class="place-items-center grid space-y-2">
       {#if submitted == false}
         <form on:submit|preventDefault class="space-y-2">
