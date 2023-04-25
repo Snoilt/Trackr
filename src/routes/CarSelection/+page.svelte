@@ -52,23 +52,5 @@
 </main>
 
 <style lang="scss">
-  main {
-    font-family: "Avenir Next Condensed";
-    font-style: italic;
-    font-weight: 900;
-    font-size: 24px;
-    letter-spacing: 0.025em;
-  }
-    #carContainer {
-        margin: 10px;
-        padding: 10px;
-        border: 1px solid black;
-        border-radius: 10px;
-    }
-
-    #carLink {
-        text-decoration: none;
-        color: black;
-    }
 
 </style>
