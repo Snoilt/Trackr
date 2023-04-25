@@ -15,11 +15,11 @@
   $: entries = data.entries
 </script>
 
-<main>
+<main class="space-y-2">
   <a href="/CarSelection">Go back to Overview</a>
   <h1>{car.carName}</h1>
   {#each $entries as entry}
-    <div class="entry">
+    <div class="entry card p-4 w-72">
       <h3>{entry.maintenanceType}</h3>
       <h3>{entry.shortDescription}</h3>
       <h3>{entry.repairTime}</h3>
@@ -41,9 +41,5 @@
 </main>
 
 <style>
-  .entry {
-    background-color: beige;
-    width: 250px;
-    height: 200px;
-  }
+
 </style>

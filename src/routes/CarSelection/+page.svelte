@@ -27,30 +27,36 @@
   $: cars = data.cars
 </script>
 
-<main>
-  {#each $cars as car}
-    {#if editMode}
-      <div id="carContainer">
-        <a id="carLink" href="/CarOverview/{car.id}">{car.carName}</a>
-        <button on:click={() => removeCar(car)}>-</button>
-      </div>
-    {:else}
-      <div id="carContainer"><a id="carLink" href="/CarOverview/{car.id}">{car.carName}</a></div>
-    {/if}
-  {/each}
-  <div>
-    {#if editMode}
-      <input type="text" placeholder="Car Name" bind:this={carInput} />
-      <button on:click={addCar}>Add Car</button>
-    {/if}
-  </div>
-  <button
-    on:click={() => {
-      editMode = editMode ? false : true
-    }}>Edit</button
-  >
-</main>
+<body
+  data-theme="skeleton"
+  class="bg-no-repeat h-screen w-screen place-items-center grid"
+>
+  <main class="space-y-2 place-items-center grid">
+    {#each $cars as car}
+      {#if editMode}
+        <div id="carContainer">
+          <a id="carLink" class="btn variant-ghost-tertiary" href="/CarOverview/{car.id}">{car.carName}</a>
+          <button on:click={() => removeCar(car)}>-</button>
+        </div>
+      {:else}
+        <div id="carContainer">
+          <a class="btn variant-ghost-tertiary" id="carLink" href="/CarOverview/{car.id}">{car.carName}</a>
+        </div>
+      {/if}
+    {/each}
+    <div>
+      {#if editMode}
+        <input class="input" type="text" placeholder="Car Name" bind:this={carInput} />
+        <button on:click={addCar}>Add Car</button>
+      {/if}
+    </div>
+    <button
+      on:click={() => {
+        editMode = editMode ? false : true
+      }}>Edit</button
+    >
+  </main>
+</body>
 
 <style lang="scss">
-
 </style>

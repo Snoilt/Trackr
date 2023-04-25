@@ -13,7 +13,7 @@
 <slot />
 <div id="container">
   {#if $currentUser}
-    <button on:click={signOut}>Sign Out</button>
+    <button class="btn variant-filled-surface" on:click={signOut}>Sign Out</button>
   {/if}
 </div>
 
