@@ -4,6 +4,25 @@
   import type { Record } from "pocketbase"
   import CarAdd from "$lib/CarAdd.svelte"
 
+  import { Modal, modalStore } from "@skeletonlabs/skeleton"
+  import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton"
+
+
+  const modalComponent: ModalComponent = {
+	// Pass a reference to your custom component
+	ref: CarAdd,
+	// Add the component properties as key/value pairs
+	props: { background: 'bg-red-500' },
+	// Provide a template literal for the default component slot
+	slot: '<p>Skeleton</p>'
+};  
+
+const d: ModalSettings = {
+	type: 'component',
+	// Pass the component directly:
+	component: modalComponent,
+};
+
 
   export let data
   let cars = data.cars
@@ -30,6 +49,8 @@
   $: cars = data.cars
 </script>
 
+<Modal />
+
 <body
   data-theme="skeleton"
   class="bg-no-repeat h-screen w-screen grid justify-items-center"
@@ -47,7 +68,8 @@
       editMode = editMode ? false : true
     }}>Edit</button
   >
-  
+
+  <button on:click={()=>{modalStore.trigger(d)}}>Add Car</button>
 </body>
 
 <style lang="scss">

@@ -1,13 +1,22 @@
 <script lang="ts">
   import { pb } from "$lib/pocketbase"
-  import { goto } from "$app/navigation";
+  import { goto } from "$app/navigation"
+  import { DateTime } from "luxon"
   export let carID: string
   async function getCar() {
     const car = await pb.collection("cars").getOne(carID)
     return car
   }
+
   let car = getCar()
 
+  async function formatDate() {
+    const date = (await car).created
+    const isoString = date.replace(" ", "T")
+    const value = DateTime.fromISO(isoString).toFormat("dd/MM/yyyy")
+    return value
+  }
+  let createdDate = formatDate()
 </script>
 
 <body class="my-11 sm:my-4 sm:mx-1 rounded-lg w-72 h-32">
@@ -15,7 +24,12 @@
     <p>loading...</p>
   {:then car}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div on:click={()=>{goto(`/CarOverview/${car.id}`)}} class="card card-hover p-4">
+    <div
+      on:click={() => {
+        goto(`/CarOverview/${car.id}`)
+      }}
+      class="card card-hover p-4"
+    >
       <header class="mb-3">
         <p class="font-bold text-2xl">{car.carName}</p>
       </header>
@@ -36,7 +50,11 @@
       </section>
       <hr class="solid" />
       <footer class="mt-3">
-        <p>Some Footer Text</p>
+        {#await createdDate}
+          <p>loading...</p>
+        {:then createdDate}
+          <p class="text-slate-300">Added on {createdDate}</p>
+        {/await}
       </footer>
     </div>
   {/await}
