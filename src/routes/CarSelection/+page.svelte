@@ -1,4 +1,5 @@
 <script lang="ts">
+  import CarWidget from "$lib/CarWidget.svelte"
   import { invalidate, invalidateAll } from "$app/navigation"
   import type { Record } from "pocketbase"
 
@@ -29,34 +30,22 @@
 
 <body
   data-theme="skeleton"
-  class="bg-no-repeat h-screen w-screen place-items-center grid"
+  class="bg-no-repeat h-screen w-screen grid justify-items-center"
 >
-  <main class="space-y-2 place-items-center grid">
+  <h1 class="mt-8">Overview</h1>
+  <main class="grid grid-cols-1 sm:grid-cols-2">
     {#each $cars as car}
-      {#if editMode}
-        <div id="carContainer">
-          <a id="carLink" class="btn variant-ghost-tertiary" href="/CarOverview/{car.id}">{car.carName}</a>
-          <button on:click={() => removeCar(car)}>-</button>
-        </div>
-      {:else}
-        <div id="carContainer">
-          <a class="btn variant-ghost-tertiary" id="carLink" href="/CarOverview/{car.id}">{car.carName}</a>
-        </div>
-      {/if}
+      <CarWidget carID={car.id} />
     {/each}
-    <div>
-      {#if editMode}
-        <input class="input" type="text" placeholder="Car Name" bind:this={carInput} />
-        <button on:click={addCar}>Add Car</button>
-      {/if}
-    </div>
-    <button
-      on:click={() => {
-        editMode = editMode ? false : true
-      }}>Edit</button
-    >
   </main>
+  <button
+    class="btn"
+    on:click={() => {
+      editMode = editMode ? false : true
+    }}>Edit</button
+  >
 </body>
 
 <style lang="scss">
+    
 </style>
