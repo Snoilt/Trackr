@@ -2,6 +2,8 @@
   import CarWidget from "$lib/CarWidget.svelte"
   import { invalidate, invalidateAll } from "$app/navigation"
   import type { Record } from "pocketbase"
+  import CarAdd from "$lib/CarAdd.svelte"
+
 
   export let data
   let cars = data.cars
@@ -39,13 +41,14 @@
     {/each}
   </main>
   <button
-    class="btn"
+    type="button"
+    class="btn variant-filled-secondary h-12 w-20 mt-12"
     on:click={() => {
       editMode = editMode ? false : true
     }}>Edit</button
   >
+  
 </body>
 
 <style lang="scss">
-    
 </style>

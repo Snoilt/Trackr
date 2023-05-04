@@ -10,7 +10,7 @@
 
 </script>
 
-<body class="my-11 sm:my-2 sm:mx-1 rounded-lg w-72 h-32">
+<body class="my-11 sm:my-4 sm:mx-1 rounded-lg w-72 h-32">
   {#await car}
     <p>loading...</p>
   {:then car}
