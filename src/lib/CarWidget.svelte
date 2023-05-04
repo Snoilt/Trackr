@@ -1,5 +1,6 @@
 <script lang="ts">
   import { pb } from "$lib/pocketbase"
+  import { goto } from "$app/navigation";
   export let carID: string
   async function getCar() {
     const car = await pb.collection("cars").getOne(carID)
@@ -14,7 +15,7 @@
     <p>loading...</p>
   {:then car}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div class="card card-hover p-4">
+    <div on:click={()=>{goto(`/CarOverview/${car.id}`)}} class="card card-hover p-4">
       <header class="mb-3">
         <p class="font-bold text-2xl">{car.carName}</p>
       </header>
