@@ -16,7 +16,7 @@
     const value = DateTime.fromISO(isoString).toFormat("dd/MM/yyyy")
     return value
   }
-  let createdDate = formatDate()
+  let formattedDate = formatDate()
 </script>
 
 <body class="my-11 sm:my-4 sm:mx-1 rounded-lg w-72 h-32">
@@ -50,7 +50,7 @@
       </section>
       <hr class="solid" />
       <footer class="mt-3">
-        {#await createdDate}
+        {#await formattedDate}
           <p>loading...</p>
         {:then createdDate}
           <p class="text-slate-300">Added on {createdDate}</p>
