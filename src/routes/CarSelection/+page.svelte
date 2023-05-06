@@ -7,37 +7,42 @@
   import { Modal, modalStore } from "@skeletonlabs/skeleton"
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton"
 
+  interface carData {
+    Make: String
+    Car: String
+    VIN: String
+    dateBuilt: String
+    hsn: String
+    tsn: String
+  }
 
   const modalComponent: ModalComponent = {
-	// Pass a reference to your custom component
-	ref: CarAdd,
-	// Add the component properties as key/value pairs
-	props: { background: 'bg-red-500' },
-	// Provide a template literal for the default component slot
-	slot: '<p>Skeleton</p>'
-};  
-
-const d: ModalSettings = {
-	type: 'component',
-	// Pass the component directly:
-	component: modalComponent,
-};
-
+    ref: CarAdd,
+  }
+  const d: ModalSettings = {
+    type: "component",
+    // Pass the component directly:
+    component: modalComponent,
+    response: (r: carData) => addCar(r),
+  }
 
   export let data
   let cars = data.cars
-  let carInput: HTMLInputElement
   let editMode = false
 
   const carCollection = data.carCollection
 
-  async function addCar() {
+  async function addCar(formData: carData) {
     let carAddData = {
-      carName: carInput.value,
+      carMake: formData.Make,
+      carName: formData.Car,
       user: data.user,
+      dateBuild: formData.dateBuilt,
+      vin: formData.VIN,
+      hsn: formData.hsn,
+      tsn: formData.tsn,
     }
     await carCollection.create(carAddData)
-    carInput.value = ""
     invalidateAll()
   }
 
@@ -57,9 +62,9 @@ const d: ModalSettings = {
 >
   <h1 class="mt-8">Overview</h1>
   <main class="grid grid-cols-1 sm:grid-cols-2">
-    {#each $cars as car}
-      <CarWidget carID={car.id} />
-    {/each}
+      {#each $cars as car}
+        <CarWidget carID={car.id} />
+      {/each}
   </main>
   <button
     type="button"
@@ -69,7 +74,11 @@ const d: ModalSettings = {
     }}>Edit</button
   >
 
-  <button on:click={()=>{modalStore.trigger(d)}}>Add Car</button>
+  <button
+    on:click={() => {
+      modalStore.trigger(d)
+    }}>Add Car</button
+  >
 </body>
 
 <style lang="scss">

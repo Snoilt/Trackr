@@ -6,27 +6,30 @@
   import { modalStore } from "@skeletonlabs/skeleton"
 
   //Formatting the KeyCode to be split into hsn and tsn for the database
-  let keyCode: string
+  let keyCode = ""
   function formatKeyCode() {
     const codeArray = keyCode.split("/")
     const hsn = codeArray[0]
     const tsn = codeArray[1]
     return { hsn, tsn }
   }
-  const formattedKeyCode = formatKeyCode()
 
+  let formattedKeyCode = formatKeyCode()
   // Form Data
   const formData = {
     Make: "",
     Car: "",
     VIN: "",
     dateBuilt: "",
-    hsn: formattedKeyCode.hsn,
-    tsn: formattedKeyCode.tsn,
+    hsn: "",
+    tsn: "",
   }
-
   // We've created a custom submit function to pass the response and close the modal.
   function onFormSubmit(): void {
+    formattedKeyCode = formatKeyCode()
+    formData.hsn = formattedKeyCode.hsn
+    formData.tsn = formattedKeyCode.tsn
+
     if ($modalStore[0].response) $modalStore[0].response(formData)
     modalStore.close()
   }
@@ -42,7 +45,7 @@
 
 {#if $modalStore[0]}
   <div class="modal-example-form {cBase}">
-    <header class={cHeader}>{"Add Car" ?? "(title missing)"}</header>
+    <header class={cHeader}>Add Car</header>
     <!-- Enable for debugging: -->
     <!-- <pre>{JSON.stringify(formData, null, 2)}</pre> -->
     <form class="modal-form {cForm}">

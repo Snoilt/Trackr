@@ -31,21 +31,21 @@
       class="card card-hover p-4"
     >
       <header class="mb-3">
-        <p class="font-bold text-2xl">{car.carName}</p>
+        <p class="font-bold text-2xl">{car.carMake}&emsp;{car.carName}</p>
       </header>
       <hr class="solid" />
       <section class="p-4">
         <div class="flex">
           <p class="text-slate-400">VIN:&emsp;</p>
-          <p class="text-slate-200">WBAW55732XBRW439</p>
+          <p class="text-slate-200">{car.vin}</p>
         </div>
         <div class="flex">
           <p class="text-slate-400">Date Built:&emsp;</p>
-          <p class="text-slate-200">08/2002</p>
+          <p class="text-slate-200">{car.dateBuild}</p>
         </div>
         <div class="flex">
           <p class="text-slate-400">KeyCode:&emsp;</p>
-          <p class="text-slate-200">4402/302</p>
+          <p class="text-slate-200">{car.hsn}/{car.tsn}</p>
         </div>
       </section>
       <hr class="solid" />
