@@ -17,6 +17,7 @@
 
   async function createEntry() {
     const entryCollection = await pb.collection("maintenance_entry")
+    //FIX CARID 
     const carId = await pb.collection("cars").getList()
     const entryData = {
       maintenanceType: typeInput,

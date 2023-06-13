@@ -25,8 +25,9 @@
     component: modalComponent,
     response: (r: carData) => addCar(r),
   }
-
+  //data from +page.ts load function
   export let data
+
   let cars = data.cars
   let editMode = false
 

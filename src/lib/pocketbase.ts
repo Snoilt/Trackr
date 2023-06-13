@@ -2,7 +2,7 @@ import PocketBase from "pocketbase"
 import { writable } from "svelte/store"
 import { goto } from '$app/navigation';
 
-export const pb = new PocketBase("https://oep.oellers.net")
+export const pb = new PocketBase("https://pb.b60.dev")
 
 export const currentUser = writable(pb.authStore.model)
 
