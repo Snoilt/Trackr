@@ -75,7 +75,7 @@
     }}>Edit</button
   >
 
-  <button
+  <button class="btn variant-filled-secondary h-12 w-35 mt-2"
     on:click={() => {
       modalStore.trigger(d)
     }}>Add Car</button
